@@ -63,18 +63,22 @@ class IncomingEntry
      */
     public $recordedAt;
 
+    public $should_display_on_index;
+
     /**
      * Create a new incoming entry instance.
      *
-     * @param  array  $content
-     * @param  string|null  $uuid
+     * @param array $content
+     * @param string|null $uuid
      * @return void
      */
     public function __construct(array $content, $uuid = null)
     {
-        $this->uuid = $uuid ?: (string) Str::orderedUuid();
+        $this->uuid = $uuid ?: (string)Str::orderedUuid();
 
         $this->recordedAt = now();
+
+        $this->should_display_on_index = true;
 
         $this->content = array_merge($content, ['hostname' => gethostname()]);
 
@@ -84,7 +88,7 @@ class IncomingEntry
     /**
      * Create a new entry instance.
      *
-     * @param  mixed  ...$arguments
+     * @param mixed ...$arguments
      * @return static
      */
     public static function make(...$arguments)
@@ -95,7 +99,7 @@ class IncomingEntry
     /**
      * Assign the entry a given batch ID.
      *
-     * @param  string  $batchId
+     * @param string $batchId
      * @return $this
      */
     public function batchId(string $batchId)
@@ -108,7 +112,7 @@ class IncomingEntry
     /**
      * Assign the entry a given type.
      *
-     * @param  string  $type
+     * @param string $type
      * @return $this
      */
     public function type(string $type)
@@ -121,7 +125,7 @@ class IncomingEntry
     /**
      * Assign the entry a family hash.
      *
-     * @param  null|string  $familyHash
+     * @param null|string $familyHash
      * @return $this
      */
     public function withFamilyHash($familyHash)
@@ -134,7 +138,7 @@ class IncomingEntry
     /**
      * Set the currently authenticated user.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
+     * @param \Illuminate\Contracts\Auth\Authenticatable $user
      * @return $this
      */
     public function user($user)
@@ -149,7 +153,7 @@ class IncomingEntry
             ],
         ]);
 
-        $this->tags(['Auth:'.$user->getAuthIdentifier()]);
+        $this->tags(['Auth:' . $user->getAuthIdentifier()]);
 
         return $this;
     }
@@ -157,7 +161,7 @@ class IncomingEntry
     /**
      * Merge tags into the entry's existing tags.
      *
-     * @param  array  $tags
+     * @param array $tags
      * @return $this
      */
     public function tags(array $tags)
@@ -174,7 +178,7 @@ class IncomingEntry
      */
     public function hasMonitoredTag()
     {
-        if (! empty($this->tags)) {
+        if (!empty($this->tags)) {
             return app(EntriesRepository::class)->isMonitoring($this->tags);
         }
 
@@ -240,7 +244,7 @@ class IncomingEntry
     public function isFailedJob()
     {
         return $this->type === EntryType::JOB &&
-               ($this->content['status'] ?? null) === 'failed';
+            ($this->content['status'] ?? null) === 'failed';
     }
 
     /**
