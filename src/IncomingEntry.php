@@ -320,6 +320,7 @@ class IncomingEntry
             'family_hash' => $this->familyHash,
             'type' => $this->type,
             'content' => $this->content,
+            'should_display_on_index' => $this->should_display_on_index,
             'created_at' => $this->recordedAt->toDateTimeString(),
         ];
     }
