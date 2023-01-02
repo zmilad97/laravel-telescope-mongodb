@@ -1,5 +1,5 @@
 {
-    "name": "zmilad97/telescope",
+    "name": "zmilad97/telescope-with-mongo",
     "description": "An elegant debug assistant for the Laravel framework compatible with mongodb.",
     "keywords": ["laravel", "monitoring", "debugging"],
     "license": "MIT",
