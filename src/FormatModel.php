@@ -11,12 +11,13 @@ class FormatModel
     /**
      * Format the given model to a readable string.
      *
-     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @param \Jenssegers\Mongodb\Eloquent\Model $model
+     *
      * @return string
      */
     public static function given($model)
     {
-        if ($model instanceof Pivot && ! $model->incrementing) {
+        if ($model instanceof Pivot && !$model->incrementing) {
             $keys = [
                 $model->getAttribute($model->getForeignKey()),
                 $model->getAttribute($model->getRelatedKey()),
@@ -25,8 +26,8 @@ class FormatModel
             $keys = $model->getKey();
         }
 
-        return get_class($model).':'.implode('_', array_map(function ($value) {
-            return $value instanceof BackedEnum ? $value->value : $value;
-        }, Arr::wrap($keys)));
+        return get_class($model) . ':' . implode('_', array_map(function ($value) {
+                return $value instanceof BackedEnum ? $value->value : $value;
+            }, Arr::wrap($keys)));
     }
 }

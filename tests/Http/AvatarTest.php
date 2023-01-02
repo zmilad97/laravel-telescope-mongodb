@@ -3,7 +3,7 @@
 namespace Laravel\Telescope\Tests\Http;
 
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model;
 use Laravel\Telescope\Http\Middleware\Authorize;
 use Laravel\Telescope\Telescope;
 use Laravel\Telescope\Tests\FeatureTestCase;
@@ -76,6 +76,8 @@ class AvatarTest extends FeatureTestCase
 
 class UserEloquent extends Model implements Authenticatable
 {
+    protected $connection = 'mongodb';
+
     protected $table = 'users';
 
     protected $guarded = [];

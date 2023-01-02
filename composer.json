@@ -14,8 +14,9 @@
         }
     ],
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "8.1",
         "ext-json": "*",
+        "jenssegers/mongodb": "^3.9",
         "laravel/framework": "^8.37|^9.0",
         "symfony/var-dumper": "^5.0|^6.0"
     },
