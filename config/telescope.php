@@ -41,17 +41,7 @@ return [
     | custom options as needed by the particular driver you choose.
     |
     */
-    'connections' => [
 
-        'mongodb' => array(
-            'driver' => 'mongodb',
-            'host' => 'localhost',
-            'port' => 27017,
-            'username' => 'username',
-            'password' => '',
-            'database' => 'telescope',
-        ),
-    ],
     'driver' => env('TELESCOPE_DRIVER', 'database'),
 
     'storage' => [
