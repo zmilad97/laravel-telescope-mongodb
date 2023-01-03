@@ -1,7 +1,11 @@
 {
     "name": "zmilad97/laravel-telescope-mongodb",
     "description": "An elegant debug assistant for the Laravel framework compatible with mongodb.",
-    "keywords": ["laravel", "monitoring", "debugging"],
+    "keywords": [
+        "laravel",
+        "monitoring",
+        "debugging"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -14,9 +18,9 @@
         }
     ],
     "require": {
-        "php": "^7.4",
+        "php": "^7.3|^8.0",
         "ext-json": "*",
-        "jenssegers/mongodb": "^3.9",
+        "jenssegers/mongodb": "^3.8",
         "laravel/framework": "^8.37|^9.0",
         "symfony/var-dumper": "^5.0|^6.0"
     },
