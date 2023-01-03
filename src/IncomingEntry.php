@@ -200,10 +200,10 @@ class IncomingEntry
      *
      * @return bool
      */
-    public function isFailedRequest()
+    public function isFailedRequest($failedBound = 500)
     {
         return $this->type === EntryType::REQUEST &&
-            ($this->content['response_status'] ?? 200) >= 500;
+            ($this->content['response_status'] ?? 200) >= $failedBound;
     }
 
     /**
